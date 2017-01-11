@@ -23,23 +23,19 @@ In
 [the releases section of this repo](https://github.com/guardian/aws-pen-test-form/releases)
 is a jar that can be executed directly.
 
-    java -jar pen-test-form.jar <AWS profile> [<aws region name>]
+    java -jar pen-test-form.jar [<aws region name>]
 
 e.g.
 
-    java -jar pen-test-form.jar my-profile eu-west-1
+    java -jar pen-test-form.jar eu-west-1
 
-The project uses the AWS credentials file so you should provide a
-profile to choose which account to use (just as you would when using
-the AWS CLI tool). More info is available in the
-[AWS CLI documentation](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html).
-Note that the credentials attached to this profile will need at
-least the following permissions:
+The project uses the AWS credentials chain that checks the folling ENV variables, IAM instance profile, default credentials in ~/.aws/credentials
+you require least the following permissions:
 
 * `autoscaling:DescribeAutoScalingGroups`
 * `ec2:DescribeInstances`
 
-The second argument is the AWS region to use when checking for AS
+The required argument is the AWS region to use when checking for AS
 groups and instances. This defaults to eu-west-1 for our (The
 Guardian's) convenience.
 
